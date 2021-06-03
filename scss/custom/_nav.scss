@@ -1,0 +1,492 @@
+/* ###### 4.8 Nav   ###### */
+
+.az-nav {
+  @include MQ(M) { align-items: center; }
+
+  .nav-link {
+    display: block;
+    color: $gray-700;
+    padding: 0;
+    position: relative;
+    line-height: normal;
+
+    &:hover, &:focus {
+      color: $gray-900;
+    }
+
+    + .nav-link {
+        padding-top: 12px;
+        margin-top: 12px;
+        border-top: 1px dotted $gray-500;
+
+        @include MQ(M) {
+          padding-top: 0;
+          margin-top: 0;
+          border-top: 0;
+          padding-left: 15px;
+          margin-left: 15px;
+          border-left: 1px dotted $gray-500;
+        }
+    }
+
+    &.active { color: $az-color-primary; }
+  }
+}
+
+.az-nav-column {
+  flex-direction: column;
+
+  .nav-link {
+    padding: 0;
+    height: $az-height-base;
+    color: $gray-900;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+
+    i {
+      font-size: 24px;
+      line-height: 0;
+      width: 24px;
+      margin-right: 12px;
+      text-align: center;
+      @include transition($transition-base);
+
+      &:not([class*=' tx-']) { color: $gray-600; }
+
+      &.typcn { line-height: .9; }
+    }
+
+    span {
+      font-weight: 400;
+      font-size: 11px;
+      color: $gray-500;
+      margin-left: auto;
+    }
+
+    &:hover,
+    &:focus {
+      color: $gray-900;
+      i:not([class*=' tx-']) { color: $gray-900; }
+    }
+
+    &.active {
+      position: relative;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 6px;
+        bottom: 6px;
+        left: -28px;
+        width: 3px;
+        background-color: $az-color-primary;
+        @include border-radius();
+        display: none;
+      }
+
+      &,
+      &:hover,
+      &:focus {
+        color: $az-color-primary;
+        i { color: $az-color-primary; }
+      }
+    }
+
+    + .nav-link { border-top: 1px dotted $gray-400; }
+  }
+
+  &.sm {
+    .nav-link {
+      font-size: $font-size-sm;
+      font-weight: 400;
+      padding: 10px 0;
+
+      i { font-size: 21px; }
+    }
+  }
+}
+
+.az-nav-dark {
+  .nav-link {
+    color: rgba(#fff, .7);
+    &:hover, &:focus { color: #fff; }
+
+    + .nav-link { border-color: $gray-700; }
+    &.active { color: $az-color-primary; }
+  }
+}
+
+.az-nav-colored-bg {
+  .nav-link {
+    + .nav-link { border-color: rgba(#fff, .4); }
+    &.active { color: #fff; }
+  }
+}
+
+.az-nav-line {
+  position: relative;
+
+  .nav-link {
+    padding: 0;
+    color: $gray-700;
+    position: relative;
+
+    &:hover, &:focus { color: $gray-900; }
+
+    + .nav-link {
+      margin-top: 15px;
+
+      @include MQ(M) {
+        margin-top: 0;
+        margin-left: 30px;
+      }
+    }
+
+    &.active {
+      color: $gray-900;
+
+      &::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        bottom: 0;
+        left: -20px;
+        width: 2px;
+        background-color: $gray-900;
+
+        @include MQ(M) {
+          top: auto;
+          bottom: -20px;
+          left: 0;
+          right: 0;
+          height: 2px;
+          width: auto;
+        }
+      }
+    }
+  }
+
+  &.az-nav-dark {
+    .nav-link {
+      color: rgba(#fff, .7);
+      &:hover, &:focus { color: #fff; }
+
+      &.active {
+        color: #fff;
+        &::before { background-color: #fff; }
+      }
+    }
+  }
+}
+
+.az-nav-tabs {
+  padding: 15px 15px 0;
+  background-color: $gray-300;
+
+  .lSSlideOuter {
+    position: relative;
+    padding-left: 32px;
+    padding-right: 35px;
+  }
+
+  .lSSlideWrapper { overflow: visible; }
+
+  .lSAction {
+    > a {
+      display: block;
+      height: 40px;
+      top: 16px;
+      opacity: 1;
+      background-color: $gray-400;
+      background-image: none;
+
+      &:hover, &:focus { background-color: darken($gray-400, 5%); }
+
+      &::before {
+        font-family: 'Ionicons';
+        font-size: 18px;
+        position: absolute;
+        top: -4px;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+
+      &.lSPrev {
+        left: -32px;
+        &::before { content: '\f3cf'; }
+      }
+
+      &.lSNext {
+        right: -35px;
+        &::before { content: '\f3d1'; }
+      }
+
+      &.disabled {
+        background-color: $gray-200;
+        color: #fff;
+      }
+    }
+  }
+
+  .lightSlider { display: flex; }
+
+  .tab-item {
+    flex-shrink: 0;
+    display: block;
+    float: none;
+    min-width: 150px;
+  }
+
+  .tab-link {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 10px 20px;
+    line-height: 1.428;
+    color: $gray-700;
+    white-space: nowrap;
+    background-color: $gray-200;
+
+    &:hover, &:focus { background-color: $gray-100; }
+
+    &.active {
+      background-color: #fff;
+      color: $gray-900;
+      font-weight: 500;
+    }
+  }
+}
+
+.az-tab-pane {
+  display: none;
+
+  &.active { display: block; }
+}
+
+// Buttons. by calebs
+
+a {
+  text-decoration: none;
+  @include transition(all .6s ease-in-out);
+  color: inherit;
+  
+  &:hover,
+  &:focus {
+      color: $az-color-primary;
+      text-decoration: none;
+  }
+  
+  &:focus {
+      outline: thin dotted $az-color-primary;
+      .no-touch & {
+          outline: none;
+      }
+  }
+}
+
+a:link,
+button {
+  -webkit-tap-highlight-color: rgba($gray-700, .35);
+  -moz-tap-highlight-color: rgba($gray-700, .35);
+}
+
+button {
+  outline: 0;
+  padding: 0;
+  border: none;
+  box-shadow: none;
+  width: auto;
+  height: auto;
+  color: inherit;
+  background: 0 0;
+  cursor: pointer;
+  text-align: center;
+  @include transition(all .6s ease-in-out);
+
+  &:focus, &:visited {
+      outline: none;
+  }
+}
+
+.btn {
+  border-radius: 30px;
+  padding: 1em 2em;
+  font-size: 12px;
+  font-weight: 900;
+  background-color: transparent;
+  color: $color_white;
+  fill: $color_white;
+  text-transform: capitalize;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  max-width: 100%;
+  box-shadow: 0px 0px 0px transparent;
+  @include transition(all .6s ease-in-out);
+  text-decoration: none !important;
+  will-change: background-color, color;
+  
+  + [class *="btn"], + [class *="Btn"] {
+      margin-left: 1.5rem;
+
+      &.btn-block {
+          margin-left: 0;
+          margin-top: 1rem;
+      }
+  }
+
+  > * + * {
+      margin-left: 10px;
+  }
+
+  @include MQ(M) {
+      min-width: 100px;
+      font-size: 14px;
+  }
+  
+  &:hover,
+  &:focus {
+      text-decoration: none !important;
+      .no-touch & {
+          outline: none;
+      }
+  }
+
+  &[disabled], &.disabled {
+      pointer-events:none;
+      color: $color_white;
+      background-color: $gray-500;
+  }
+}
+
+.btnIcon {
+  flex-shrink: 0;
+  line-height: 1;
+}
+
+.btn-icon {
+  width: 32px;
+  height: 32px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  opacity: .75;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  
+  &:hover, &:hover {
+      background-color: $color_white;
+      opacity: 1;
+  }
+}
+
+.btn-default {
+  background-color: transparent;
+  color: inherit;
+
+  &:hover,
+  &:focus {
+      background-color: $gray-300;
+      color: $az-color-text;
+  }
+}
+
+.btn-default-outline {
+  background-color: white;
+  color: $gray-600;
+  fill: $gray-600;
+  border: 1px solid $gray-300;
+
+  &:hover, &:focus {
+      color: $color_white;
+      fill: $color_white;
+      background-color: $az-color-text;
+      border-color: transparent;
+  }
+}
+
+.btn-primary {
+  background-color: $az-color-primary;
+  color: $color_white;
+  fill: white;
+
+  &:hover,
+  &:focus {
+      background-color: white;
+      color: $az-color-primary;
+      border: 1px solid $az-color-primary;
+  }
+}
+
+
+.btn-secondary {
+  background-color: $az-color-secondary;
+  color: $color_white;
+
+  &:hover,
+  &:focus {
+      background-color: $az-color-text;
+      color: $color_white;
+  }
+}
+
+.btn-danger {
+  color: $az-color-headline;
+  background-color: $az-color-primary-light;
+
+  &:hover, &:focus {
+      background-color: $az-color-red;
+      color: $color_white;
+  }
+}
+
+.btn-sm.btn,
+.btn-group-sm>.btn {
+  font-size: 12px;
+  
+  @include MQ-MAX(S) {
+      padding: 1em;
+  }
+}
+
+.btn-lg.btn,
+.btn-group-lg>.btn {
+  font-size: 16px;
+}
+
+.btn-link {
+  cursor: pointer;
+  font-size: 1em;
+  font-weight: 900;
+  display: inline-flex;
+  align-items: center;
+  color: inherit;
+
+  > * + * {
+      margin-left: 10px;
+  }
+      
+  &:hover,
+  &:focus {
+      opacity: 1;
+      color: inherit;
+      fill: $az-color-primary;
+      text-decoration: none;
+  }
+  
+  &:active, &[disabled] {
+      color: $gray-600;
+      fill: $gray-600;
+      outline: none;
+  }
+}

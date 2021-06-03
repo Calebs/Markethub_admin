@@ -1,0 +1,66 @@
+
+$az-height-base:                  38px;
+$az-height-header:                64px;
+$az-height-header-mobile:         60px;
+$az-height-navbar:                48px;
+$az-height-navbar-compact:        42px;
+$az-height-footer:                40px;
+$az-height-content:               calc(100vh - #{$az-height-header + $az-height-footer});
+
+$az-width-sidebar:                240px;
+$az-width-iconbar-aside:          230px;
+
+$gray-100:                      #f4f5f8;
+$gray-200:                      #e3e7ed;
+$gray-300:                      #cdd4e0;
+$gray-400:                      #b4bdce;
+$gray-500:                      #97a3b9;
+$gray-600:                      #7987a1;
+$gray-700:                      #596882;
+$gray-800:                      #3b4863;
+$gray-900:                      #1c273c;
+
+$az-border-color:                 #e5e5e5;
+$az-border-base:                  #d5d5d5;
+$color_white:                      #f5f5f5;
+$transition-base:                  all .4s ease-in-out 0s;
+
+$ckbox-size:                      16px;
+$rdiobox-size:                    16px;
+
+$az-color-primary:                #E60000;
+$az-color-primary-light:          #EDD0D0;
+$az-color-secondary:              #3362AB;
+$az-color-green:                  #2DA771;
+$az-color-red:                    #FF4B55;
+$az-color-yellow:                 #FFA500;
+$az-color-headline:               #2B2B2B;
+$az-color-text:                   #616161;
+
+$font-size-sm:                    14px;
+$font-size-md:                    18px;
+$font-weight:                     400;
+
+$input-btn-focus-color:           rgba($az-color-primary, .25);
+
+// Border
+$border-radius:                 3px;
+$border-color:                  $gray-300;
+
+// Buttons & Inputs
+$btn-focus-box-shadow:          none;
+$btn-active-box-shadow:         none;
+
+// Forms
+$input-border-color:            $gray-300;
+
+// Typography
+$font-family-roboto:            'Roboto', sans-serif;
+$font-family-montserrat:        'Montserrat', sans-serif;
+$font-family-manrope:           'Manrope', sans-serif;
+
+$font-family-secondary:         $font-family-montserrat;
+$font-family-base:              $font-family-manrope;
+$font-size-base:                .875rem;
+
+$link-hover-decoration:         none;

@@ -1,0 +1,61 @@
+
+.section_block {
+    padding: 70px 0;
+    display: block;
+    width: 100%;
+    position: relative;
+
+    .container {
+        z-index: 5;
+    }
+}
+
+.section_cto {
+    margin-top: 40px;
+    clear: both;
+}
+
+.section_header {
+    position: relative;
+    margin-bottom: 40px;
+}
+
+.title {
+    line-height: 1.45;
+    font-size: 14px;
+    @include break-inside(avoid);
+
+    @include MQ(M) {
+        font-size: 18px;
+    }
+}
+
+.title_sm {
+    font-size: 18px;
+    
+    @include MQ(M) {
+        font-size: 24px;
+    }
+}
+
+.title_md {
+    font-size: 21px;
+    
+    @include MQ(M) {
+        font-size: 32px;
+    }
+}
+
+.title_lg {
+    font-size: 32px;
+    
+    @include MQ(M) {
+        font-size: 42px;
+    }
+}
+
+footer[role="contentinfo"] {
+    width: 100%;
+    clear: both;
+}
+

@@ -1,0 +1,248 @@
+
+// Ion Rangeslider Skins
+@mixin irs-color-variant($color) {
+  .irs-bar,
+  .irs-bar-edge,
+  .irs-slider::before { background-color: $color; }
+
+  .irs-from,
+  .irs-to,
+  .irs-single {
+    background-color: $color;
+    &::after { border-top-color: $color; }
+  }
+}
+
+@mixin irs-modern-slider-variant($color) {
+  .irs-slider {
+    border-color: $color;
+    &::before { border-color: $color; }
+  }
+}
+
+@mixin irs-outline-variant($color) {
+  .irs-line,
+  .irs-slider {
+    border-color: $color;
+    &:hover,
+    &:focus {
+      &::before { background-color: darken($color, 5%); }
+    }
+  }
+}
+
+
+// $name = class name
+// $perc = donut percentage value
+// $size = size of donut
+// $width = width of chart
+// $base = thickness of donut
+// $center = background color of the percentage
+// $color = background color of donut hole
+// $textColor = color of text in center and the percentage
+// $textSize = size of text
+
+@mixin donut-chart($name, $perc, $size, $width, $base, $center, $color, $textColor: $color, $textSize: 40px) {
+
+  $color2: $color;
+  $base2: $base;
+	$deg: ($perc/100*360)+deg;
+	$deg1: 90deg;
+	$deg2: $deg;
+
+	// If percentage is less than 50%
+	@if $perc < 50 {
+		$base: $color;
+    $color: $base2;
+    $color2: $base2;
+    $deg1: ($perc/100*360+90)+deg;
+		$deg2: 0deg;
+	}
+
+  .az-donut-chart {
+    &#{$name} {
+      width: $size;
+      height: $size;
+      background: $base;
+
+      .slice {
+        &.one {
+          clip: rect(0 $size $size/2 0);
+          -webkit-transform: rotate($deg1);
+          transform: rotate($deg1);
+          background: $color;
+        }
+
+        &.two {
+          clip: rect(0 $size/2 $size 0);
+          -webkit-transform: rotate($deg2);
+          transform: rotate($deg2);
+          background: $color2;
+        }
+      }
+
+      .chart-center {
+        top: $width;
+        left: $width;
+        width: $size - ($width * 2);
+        height: $size - ($width * 2);
+        background: $center;
+
+        span {
+          font-size: $textSize;
+          line-height: $size - ($width * 2);
+          color: $textColor;
+
+          &:after {
+          content: '#{$perc}%';
+          }
+        }
+      }
+    }
+  }
+}
+
+// Authoured by Calebs
+// Responsive breakpoints
+$S: 576px;
+$M: 768px; // Phablets
+$L: 992px; // 10" Tablets and desktops
+$XL: 1200px; // desktops..
+
+
+@mixin MQ($canvas) {
+    @if $canvas==S {
+        /* Mobile devices */
+        @media only screen and (min-width: $S) {
+            @content;
+        }
+    }
+    @else if $canvas==M {
+        /* Tablets and phablets */
+        @media only screen and (min-width: $M) {
+            @content;
+        }
+    }
+    @else if $canvas==L {
+        /* Landscape tablets and desktop or laptops */
+        @media only screen and (min-width: $L) {
+            @content;
+        }
+    }
+    @else if $canvas==XL {
+        /* Landscape tablets and desktop or laptops */
+        @media only screen and (min-width: $XL) {
+            @content;
+        }
+    }
+}
+
+@mixin MQ-MAX($canvas) {
+    @if $canvas==S {
+        /* Mobile devices */
+        @media only screen and (max-width: 575px) {
+            @content;
+        }
+    }
+    @else if $canvas==M {
+        /* Tablets and phablets */
+        @media only screen and (max-width: 767px) {
+            @content;
+        }
+    }
+    @else if $canvas==L {
+        /* Landscape tablets and desktop or laptops */
+        @media only screen and (max-width: 991px) {
+            @content;
+        }
+    }
+    @else if $canvas==XL {
+        /* Landscape tablets and desktop or laptops */
+        @media only screen and (max-width: 1999px) {
+            @content;
+        }
+    }
+}
+
+@mixin bx_s($bxs_type: border-box) {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -ms-box-sizing: border-box;
+    -o-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+@mixin text_truncate {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    width: 100%;
+}
+
+@mixin clearfix {
+    &:before,
+    &:after {
+        content: "";
+        display: table;
+    }
+    &:after {
+        clear: both;
+    }
+    *zoom: 1;
+}
+
+@mixin drop_transition_y {
+    visibility: hidden;
+    opacity: 0;
+    @include transform-origin(center);
+    @include transform(translateY(-15px));
+    @include transition(all .6s .1s cubic-bezier(.68, .34, .15, 1));
+}
+
+@mixin drop_transition_off {
+    visibility: visible;
+    opacity: 1;
+    @include transform(translateY(0));
+    @include transition(all .6s cubic-bezier(.68, .34, .15, 1));
+}
+
+// antialiasing mode font rendering
+@mixin font-smoothing {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+@mixin image_replacement {
+    /* image replacement properties */
+    overflow: hidden;
+    text-indent: 100%;
+    white-space: nowrap;
+}
+
+@mixin center($xy:xy) {
+    @if $xy==xy {
+        left: 50%;
+        top: 50%;
+        bottom: auto;
+        right: auto;
+        @include transform(translateX(-50%) translateY(-50%));
+    }
+    @else if $xy==x {
+        left: 50%;
+        right: auto;
+        @include transform(translateX(-50%));
+    }
+    @else if $xy==y {
+        top: 50%;
+        bottom: auto;
+        @include transform(translateY(-50%));
+    }
+}
+
+@mixin flexbox() {
+    display: -webkit-box;
+    display: -moz-box;
+    display: -ms-flexbox;
+    display: -webkit-flex;
+    display: flex;
+}
